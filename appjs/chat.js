@@ -1,19 +1,38 @@
-angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope',
-    function($http, $log, $scope) {
+angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope', '$routeParams',
+    function($http, $log, $scope, $routeParams) {
         var thisCtrl = this;
 
         this.messageList = [];
-        this.counter  = 2;
         this.newText = "";
 
         this.loadMessages = function(){
-            // Get the messages from the server through the rest api
-            thisCtrl.messageList.push({"id": 1, "text": "Hola Mi Amigo", "author" : "Bob",
-            "like" : 4, "nolike" : 1});
-            thisCtrl.messageList.push({"id": 2, "text": "Hello World", "author": "Joe",
-                "like" : 11, "nolike" : 12});
-
-            $log.error("Message Loaded: ", JSON.stringify(thisCtrl.messageList));
+            var chatid = $routeParams.cid;
+            var reqURL = "http://localhost:8080/QuePasApp/groups/1/messages";
+            users = null
+            // $http.get("https://quepasapp.herokuapp.com/QuePasApp/users/").then(function(data){
+            //     users = data["data"]["Users"];
+                $http.get(reqURL).then( function(data){
+                    // Get the messages from the server through the rest api
+    
+                $log.error("Message Loaded: ", JSON.stringify(thisCtrl.messageList));
+                    messages = data["data"]["Messages"];
+                    console.log(users)
+                    for(m in messages){
+                        message = messages[m];
+                        // thisCtrl.messageList.push({"id": m, "text": "Hola Mi Amigo", "author" : "Bob",
+                        // "like" : 4, "nolike" : 1});
+                        thisCtrl.messageList.push({
+                            "id":message["msgId"],
+                            "text":message["content"],
+                            "author":message["username"],
+                            "like": message['likes'],
+                            "nolike":message['dislikes'],
+                        });
+                    }
+                });
+            // });
+           
+            
         };
 
         this.postMsg = function(){
