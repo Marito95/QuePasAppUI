@@ -6,13 +6,17 @@
         $routeProvider.when('/login', {
             templateUrl: 'pages/login.html',
             controller: 'LoginController',
-            controllerAs : 'logingCtrl'
-        }).when('/chat', {
+            controllerAs : 'loginCtrl'
+        }).when('/chat/:cid', {
             templateUrl: 'pages/chat.html',
             controller: 'ChatController',
             controllerAs : 'chatCtrl'
+        }).when('/groups', {
+            templateUrl: 'pages/group.html',
+            controller: 'GroupsController',
+            controllerAs : 'groupsCtrl'
         }).otherwise({
-            redirectTo: '/chat'
+            redirectTo: '/login'
         });
     }]);
 

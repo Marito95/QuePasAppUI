@@ -7,7 +7,7 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
 
         this.loadMessages = function(){
             var chatid = $routeParams.cid;
-            var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/1/messages";
+            var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/" + chatid + "/messages";
             users = null
             // $http.get("https://quepasapp.herokuapp.com/QuePasApp/users/").then(function(data){
             //     users = data["data"]["Users"];
