@@ -1,30 +1,27 @@
 <div ng-cloak style="align-content: center">
+    <center><h2>Chat: {{chatCtrl.getChatName()}}</h2></center>
     <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m12">
             <div class="card teal darken-1">
                 <div class="card-content ">
                     <i class="material-icons prefix" style="color: white">mode_edit</i> <span text-white style="font-size:larger; color:white">Message:</span>
                      <textarea style="background: white" id="textarea1" class="materialize-textarea" ng-model="chatCtrl.newText"></textarea>
                 </div>
                 <div class="card-action white">
-                    <button class="btn waves-effect waves-light " type="submit" name="action" ng-click="chatCtrl.postMsg()">Enviar
+                    <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="chatCtrl.postMsg()">Enviar
                     <i class="material-icons right">send</i>
                     </button>
                 </div>
             </div>
         </div>
-
     </div>
     <!--<div  id="chat-list" style="height:300px;overflow:auto">-->
     <div>
-            <script  type="text/javascript">
-                window.document.write("Please work");    
-            </script>
         <!-- Here come the messages in the chat, each one presented in card -->
         <div ng-repeat="m in chatCtrl.messageList">
             <!-- This card prodives space for the message and Like/dislike buttons -->
             <div class="row">
-                <div class="col s12 m6">
+                <div class="col s12 m12">
                     <div class="card">
                         <div class="card-content">
                             <!-- Card Title is the person who write the message -->
@@ -38,9 +35,9 @@
                                 </p>
                         </div>
                         <div class="card-action">
-                            <button class="btn-floating btn-small waves-effect waves-light blue" type="submit" name="action" ng-click="chatCtrl.likeMsg($index)"><i class="material-icons">thumb_up
+                            <button class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.likeMsg($index)"><i class="material-icons">thumb_up
                             </i></button> <span ng-bind="m.like">  </span>
-                            <button  class="btn-floating btn-small waves-effect waves-light blue" type="submit" name="action" ng-click="chatCtrl.dislikeMsg($index)"><i class="material-icons">thumb_down
+                            <button  class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.dislikeMsg($index)"><i class="material-icons">thumb_down
                             </i></button> <span ng-bind="m.nolike">  </span>
                         </div>
                     </div>
@@ -49,5 +46,3 @@
         </div>
     </div>
 </div>
-</body>
-</html>

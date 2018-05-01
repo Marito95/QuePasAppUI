@@ -2,6 +2,7 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
     function($http, $log, $scope, $routeParams) {
         var thisCtrl = this;
 
+        this.currentChat = $routeParams.cname;
         this.messageList = [];
         this.newText = "";
 
@@ -38,6 +39,15 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
             thisCtrl.currentUser = user;
         };
         
+        this.getChatName = function(name){
+            return thisCtrl.currentChatName;
+        }
+
+        this.setChatName = function(name){
+            thisCtrl.currentChatName = name;
+            $log.log("Changed chat name to: " + name)
+        }
+
         this.postMsg = function(){
             var msg = thisCtrl.newText;
             if(msg != ""){
@@ -97,6 +107,7 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
         };
 
         this.loadMessages();
+        this.setChatName(thisCtrl.currentChat);
 }]);
 
 

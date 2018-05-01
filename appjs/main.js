@@ -7,7 +7,7 @@
             templateUrl: 'pages/login.html',
             controller: 'LoginController',
             controllerAs : 'loginCtrl'
-        }).when('/chat/:cid', {
+        }).when('/chat/:cid/:cname', {
             templateUrl: 'pages/chat.html',
             controller: 'ChatController',
             controllerAs : 'chatCtrl'
