@@ -1,3 +1,5 @@
+var currentUser = "";
+
 angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scope', '$routeParams', '$window',
     function($http, $log, $scope, $routeParams, $window) {
         var thisCtrl = this;
@@ -13,24 +15,25 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                 $http.post(reqURL, parameter).then( function(data){
                     // Get the user from the server through the rest api
     
-                    //$log.error("Message Loaded: ", JSON.stringify(data["data"]["User"]));
+                    $log.log("Message Loaded: ", JSON.stringify(data["data"]["User"]));
                     result = data["data"]["User"];
-                    console.log(result);
                     thisCtrl.user.push({
                         "id":result["userId"],
                         "username":result["username"]
                     });
                     alert("Valid login for user: " + result["username"]);
+                    currentUser = result["username"];
                     $window.location.href = '/#!/groups';
-                    
                 
-                }).catch(function(){
+                }).catch(function(err){
                     alert("Invalid login");
+                    $log.error(err.message);
                     $window.location.href = '/#!/login';
                 });
                 // thisCtrl.email = "";
                 // thisCtrl.password = "";
         };
+
 
         // this.postMsg = function(){
         //     var msg = thisCtrl.newText;
@@ -41,5 +44,6 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
         //     thisCtrl.newText = "";
         // };
 
-        this.login();
+        //this.login();
 }]);
+
