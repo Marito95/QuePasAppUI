@@ -15,9 +15,11 @@
         </div>
 
     </div>
-
     <!--<div  id="chat-list" style="height:300px;overflow:auto">-->
     <div>
+            <script  type="text/javascript">
+                window.document.write("Please work");    
+            </script>
         <!-- Here come the messages in the chat, each one presented in card -->
         <div ng-repeat="m in chatCtrl.messageList">
             <!-- This card prodives space for the message and Like/dislike buttons -->
@@ -28,15 +30,18 @@
                             <!-- Card Title is the person who write the message -->
                             <span class="card-title">{{m.author}}</span>
                             <!-- Here comes the message text -->
-                            <p>
-                                {{m.text}}
-                            </p>
+                                <p>
+                                    {{chatCtrl.getRepliedMessage(m.repliesTo)}}
+                                </p> 
+                                <p>
+                                    {{m.text}}
+                                </p>
                         </div>
                         <div class="card-action">
-                            <a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">thumb_up
-                            </i></a> <span ng-bind= "m.like">  </span>
-                            <a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">thumb_down
-                            </i></a><span ng-bind="m.nolike">  </span>
+                            <button class="btn-floating btn-small waves-effect waves-light blue" type="submit" name="action" ng-click="chatCtrl.likeMsg($index)"><i class="material-icons">thumb_up
+                            </i></button> <span ng-bind="m.like">  </span>
+                            <button  class="btn-floating btn-small waves-effect waves-light blue" type="submit" name="action" ng-click="chatCtrl.dislikeMsg($index)"><i class="material-icons">thumb_down
+                            </i></button> <span ng-bind="m.nolike">  </span>
                         </div>
                     </div>
                 </div>
@@ -44,3 +49,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>

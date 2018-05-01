@@ -10,10 +10,9 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
             var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/";
                 $http.get(reqURL).then( function(data){
                     // Get the messages from the server through the rest api
-    
-                $log.error("Message Loaded: ", JSON.stringify(thisCtrl.messageList));
+
                     groups = data["data"]["Groups"];
-                    console.log(groups)
+                    $log.log("Message Loaded: ", JSON.stringify(groups));
                     for(g in groups){
                         group = groups[g];
                         thisCtrl.groupList.push({
