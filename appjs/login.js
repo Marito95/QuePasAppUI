@@ -44,6 +44,6 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
         //     thisCtrl.newText = "";
         // };
 
-        //this.login();
+        // this.login();
 }]);
 
