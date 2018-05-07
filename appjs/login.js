@@ -7,7 +7,7 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
         this.user = [];
         this.email = thisCtrl.email;
         this.password = thisCtrl.password;
-
+        
         this.login = function(){
             //var chatid = $routeParams.cid;
             var parameter = JSON.stringify({email:this.email, password:this.password})

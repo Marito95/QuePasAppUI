@@ -21,7 +21,7 @@
                 window.document.write("Please work");    
             </script>
         <!-- Here come the messages in the chat, each one presented in card -->
-        <div ng-repeat="m in chatCtrl.messageList">
+        <div ng-repeat="m in chatCtrl.messageList | orderBy: '-id'">
             <!-- This card prodives space for the message and Like/dislike buttons -->
             <div class="row">
                 <div class="col s12 m6">
