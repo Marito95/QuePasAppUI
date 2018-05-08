@@ -61,8 +61,14 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
             }
         };
 
-        this.likeMsg = function(index){
-            var msg = thisCtrl.messageList[index];
+        this.likeMsg = function(id){
+            var msg;
+            for (i = 0; i < thisCtrl.messageList.length; i++){
+                if(thisCtrl.messageList[i].id == id-1){    
+                    msg = thisCtrl.messageList[thisCtrl.messageList[i].id];
+                }
+            }
+
             $log.log(msg)
             if(!msg.liked){
                 msg.like++;
@@ -76,8 +82,14 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
             }
         };
 
-        this.dislikeMsg = function(index){
-            var msg = thisCtrl.messageList[index];
+        this.dislikeMsg = function(id){
+            var msg;
+            for (i = 0; i < thisCtrl.messageList.length; i++){
+                if(thisCtrl.messageList[i].id == id-1){    
+                    msg = thisCtrl.messageList[thisCtrl.messageList[i].id];
+                }
+            }
+
             $log.log(msg)
             if(!msg.disliked){
                 msg.nolike++;
