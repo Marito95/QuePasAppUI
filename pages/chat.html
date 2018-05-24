@@ -18,7 +18,7 @@
     <!--<div  id="chat-list" style="height:300px;overflow:auto">-->
     <div>
         <!-- Here come the messages in the chat, each one presented in card -->
-        <div ng-repeat="m in chatCtrl.messageList">
+        <div ng-repeat="m in chatCtrl.messageList | orderBy : '-id'">
             <!-- This card prodives space for the message and Like/dislike buttons -->
             <div class="row">
                 <div class="col s12 m12">
@@ -35,9 +35,9 @@
                                 </p>
                         </div>
                         <div class="card-action">
-                            <button class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.likeMsg($index)"><i class="material-icons">thumb_up
+                            <button class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.likeMsg(m)"><i class="material-icons">thumb_up
                             </i></button> <span ng-bind="m.like">  </span>
-                            <button  class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.dislikeMsg($index)"><i class="material-icons">thumb_down
+                            <button  class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.dislikeMsg(m)"><i class="material-icons">thumb_down
                             </i></button> <span ng-bind="m.nolike">  </span>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 var currentUser = "";
+var currentUserId;
 
 angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scope', '$routeParams', '$window',
     function($http, $log, $scope, $routeParams, $window) {
@@ -22,6 +23,7 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                         "username":result["username"]
                     });
                     currentUser = result["username"];
+                    currentUserId = result["userId"];
                     $window.location.href = '/#!/groups';
                 
                 }).catch(function(err){
