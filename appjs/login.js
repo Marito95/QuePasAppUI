@@ -15,14 +15,13 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
             var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/login";
                 $http.post(reqURL, parameter).then( function(data){
                     // Get the user from the server through the rest api
-    
+                    $log.log(data)
                     $log.log("Message Loaded: ", JSON.stringify(data["data"]["User"]));
                     result = data["data"]["User"];
                     thisCtrl.user.push({
                         "id":result["userId"],
                         "username":result["username"]
                     });
-                    alert("Valid login for user: " + result["username"]);
                     currentUser = result["username"];
                     currentUserId = result["userId"];
                     $window.location.href = '/#!/groups';
