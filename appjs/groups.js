@@ -17,7 +17,7 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
                 thisCtrl.redirectToLogin()
 
             var chatid = $routeParams.cid;
-            var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/";
+            var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/users/" + currentUserId + "/groups/";
             var index = 0;
                 $http.get(reqURL).then( function(data){
                     // Get the messages from the server through the rest api
