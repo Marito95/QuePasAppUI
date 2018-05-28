@@ -22,7 +22,6 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                         "id":result["userId"],
                         "username":result["username"]
                     });
-                    alert("Valid login for user: " + result["username"]);
                     currentUser = result["username"];
                     currentUserId = result["userId"];
                     $window.location.href = '/#!/groups';
