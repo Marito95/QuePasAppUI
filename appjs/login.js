@@ -1,5 +1,5 @@
-var currentUser = "Reaper";
-var currentUserId = 1;
+var currentUser = "";
+var currentUserId;
 
 angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scope', '$routeParams', '$window',
     function($http, $log, $scope, $routeParams, $window) {
@@ -24,6 +24,7 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                     });
                     currentUser = result["username"];
                     currentUserId = result["userId"];
+                    alert("Successful login for user : " + currentUser);
                     $window.location.href = '/#!/groups';
                 
                 }).catch(function(err){
@@ -31,23 +32,10 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                     $log.error(err.message);
                     $window.location.href = '/#!/login';
                 });
-                // thisCtrl.email = "";
-                // thisCtrl.password = "";
         };
 
         this.register = function(){
             $window.location.href = '/#!/register';
         }
-
-        // this.postMsg = function(){
-        //     var msg = thisCtrl.newText;
-        //     // Need to figure out who I am
-        //     var author = "Me";
-        //     var nextId = thisCtrl.counter++;
-        //     thisCtrl.messageList.unshift({"id": nextId, "text" : msg, "author" : author, "like" : 0, "nolike" : 0});
-        //     thisCtrl.newText = "";
-        // };
-
-        // this.login();
 }]);
 

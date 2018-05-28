@@ -15,6 +15,10 @@
             templateUrl: 'pages/chat.html',
             controller: 'ChatController',
             controllerAs : 'chatCtrl'
+        }).when('/messageDetails/:cid/:cname/:msgid', {
+            templateUrl: 'pages/messageDetails.html',
+            controller: 'MessageDetailsController',
+            controllerAs : 'msgDetailsCtrl'
         }).when('/groups', {
             templateUrl: 'pages/group.html',
             controller: 'GroupsController',

@@ -1,0 +1,58 @@
+<div ng-cloak style="align-content: center">
+        <!--a href="/#!/joinGroups" class="btn-floating halfway-fab waves-effect waves-light teal darken-1"><i class="material-icons">add</i></a-->
+        <button style="float:right" class="btn btn-big waves-effect waves-light teal darken-1" type="reset" name="action" ng-click="msgDetailsCtrl.returnToGroup()">
+                <i class="material-icons">arrow_back</i>
+        </button>
+    <center><h2>Message Details</h2></center>
+    <div>
+        <h3>Likes</h3>
+        <!-- Here come the messages in the chat, each one presented in card -->
+        <div ng-repeat="l in msgDetailsCtrl.likesList" style = "display: flex; justify-content: center; align-items: center;">
+            <!-- This card prodives space for the message and Like/dislike buttons -->
+            <!-- <div class="row w-25"> -->
+                <!-- <div class="col s12 m12 l6"> -->
+                    
+                    <div class="card horizontal" style="align-content: center; width: 50%; min-width: 250px;">
+                        <div class="card-image">
+                            <img src="images/user.png">
+                            <!-- Card Title is the name of the group chat-->
+                            </div>
+                            <!-- <div class="card-content"> -->
+                                <!-- <p> -->
+                                    <div class="card-title">
+                                        <div id="likes" style="color:#00897b; font-size: 1.5em">{{l.username}}</div>
+                                    </div>
+                                <!-- </p> -->
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                <!-- </div> -->
+            <!-- </div> -->
+        </div>
+        <div>
+        <h3>Dislikes</h3>
+                <!-- Here come the messages in the chat, each one presented in card -->
+                <div ng-repeat="d in msgDetailsCtrl.dislikesList" style = "display: flex; justify-content: center; align-items: center;">
+                    <!-- This card prodives space for the message and Like/dislike buttons -->
+                    <!-- <div class="row w-25"> -->
+                        <!-- <div class="col s12 m12 l6"> -->
+                            
+                            <div class="card horizontal" style="align-content: center; width: 50%; min-width: 250px;">
+                                <div class="card-image">
+                                    <img src="images/user.png"  >
+                                    <!-- Card Title is the name of the group chat-->
+                                    </div>
+                                    <!-- <div class="card-content"> -->
+                                        <!-- <p> -->
+                                            <div class="card-title">
+                                                <div id="dislikes" style="color:#00897b; font-size: 1.5em">{{d.username}}</div>
+                                            </div>
+                                        <!-- </p> -->
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                    <!-- </div> -->
+                </div>
+        </div>
+</div>
