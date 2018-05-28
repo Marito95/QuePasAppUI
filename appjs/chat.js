@@ -1,5 +1,5 @@
-angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope', '$routeParams',
-    function($http, $log, $scope, $routeParams) {
+angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope', '$routeParams', '$window',
+    function($http, $log, $scope, $routeParams, $window) {
         var thisCtrl = this;
 
         this.currentChat = $routeParams.cname;
@@ -8,7 +8,8 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
 
         this.loadMessages = function(){
             var chatid = $routeParams.cid;
-            var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/" + chatid + "/messages";
+            var reqURL = "http://192.168.0.3:8000/QuePasApp/groups/" + chatid + "/messages";
+            //var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/" + chatid + "/messages";
             $http.get(reqURL).then( function(data){
                 // Get the messages from the server through the rest api
                 $log.log("Message Loaded: ", data["data"]["Messages"]);
@@ -23,6 +24,8 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
                         "repliesTo":message['repliesTo'],
                         "like":message['likes'],
                         "nolike":message['dislikes'],
+                        "postDate":message['postDate'],
+                        "postTime":message['postTime'].substring(0, 5),
                         "liked":false,
                         "disliked":false
                     });
@@ -55,6 +58,62 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
                 var nextId = thisCtrl.counter++;
                 thisCtrl.messageList.unshift({"id": nextId, "text" : msg, "author" : author, "like" : 0, "nolike" : 0});
                 thisCtrl.newText = "";
+            }
+            else{
+                alert("Message is empty!");
+            }
+        };
+
+        this.postMsg = function(){
+            var msg = thisCtrl.newText;
+            var groupId = $routeParams.cid;
+            
+            if(currentUser == ""){
+                alert("Please login!");
+                $window.location.href = '/#!/login';
+                return
+            }
+
+            if(msg != ""){
+                var msgForm = new FormData();
+                msgForm.append("authorId", 1);
+                msgForm.append("groupId", groupId)
+                msgForm.append("content", msg);
+                var config = {
+                    headers : {
+                        //'Content-Type': 'application/json;charset=utf-8;'
+                        'Content-Type': undefined
+    
+                    }
+                }
+                var reqURL = "http://192.168.0.3:8000/QuePasApp/messages/send";
+                //var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/messages/send";
+                $http.post(reqURL, msgForm, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined}
+                }).then(function(response){
+                            // Get the posted message from the server through the rest api
+                            result = response.data.Message;
+                            $log.log("Message Loaded: ", JSON.stringify(result));
+                            
+                            thisCtrl.messageList.push({
+                                "id":result["msgId"],
+                                "text":result["content"],
+                                "author":currentUser,
+                                "isReply":false,
+                                "repliesTo": null,
+                                "like": 0,
+                                "nolike": 0,
+                                "postDate":result['postDate'],
+                                "postTime":result['postTime'].substring(0, 5),
+                                "liked":false,
+                                "disliked":false
+                            });  
+                        },
+                        function(response){
+                            $log.error(response.data);
+                        }
+                    );
             }
             else{
                 alert("Message is empty!");
@@ -103,6 +162,11 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
                     return thisCtrl.messageList[i].author
             }
         };
+
+        this.refreshMessages = function(){
+            thisCtrl.messageList = [];
+            this.loadMessages();
+        }
 
         this.loadMessages();
         this.setChatName(thisCtrl.currentChat);

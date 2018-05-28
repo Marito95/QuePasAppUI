@@ -1,0 +1,46 @@
+<div ng-cloak style="align-content: center">  
+        <center><h2>Welcome to QuePasApp!</h2></center>
+        <div class="row"><br>
+            <div class="col s12 m12">
+                <div class="card teal darken-1">
+                    <div class="card-content">
+                        <div class="form-field">
+                                <label for="username" style="color:white; font-size:20px">Username</label>
+                                <input type="text" style="color:white; font-size:20px" id="username" ng-model="registerCtrl.username">
+                        </div><br>
+                        <div class="form-field">
+                                <label for="username" style="color:white; font-size:20px">Name</label>
+                                <input type="text" style="color:white; font-size:20px" id="name" ng-model="registerCtrl.name">
+                        </div><br>
+                        <div class="form-field">
+                                <label for="username" style="color:white; font-size:20px">Last Name</label>
+                                <input type="text" style="color:white; font-size:20px" id="lastname" ng-model="registerCtrl.lastname">
+                        </div><br>
+                        <div class="form-field" >
+                                <label for="password" style="color:white; font-size:20px">Password</label>
+                                <input type="password" style="color:white; font-size:20px" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                                ng-model="registerCtrl.password">
+                        </div><br>
+                        <!--div class="form-field" >
+                                <label for="password" style="color:white; font-size:20px">Verify Password</label>
+                                <input type="password" style="color:white; font-size:20px" id="password" ng-model="loginCtrl.password">
+                        </div><br-->
+                        <div class="form-field">
+                                <label for="username" style="color:white; font-size:20px">Phone Number</label>
+                                <input type="text" style="color:white; font-size:20px" id="phonenumber" pattern="(?=.*\d).{10}" 
+                                title="Must contain 10 numbers" ng-model="registerCtrl.phonenumber">
+                        </div><br>
+                        <div class="form-field">
+                                <label for="username" style="color:white; font-size:20px">Email</label>
+                                <input type="text" style="color:white; font-size:20px" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ng-model="registerCtrl.email">
+                        </div><br>
+                        
+                        <div class="form-field">
+                            <button class="btn-large waves-effect waves-dark" style="width:20%;" ng-click="registerCtrl.register()">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

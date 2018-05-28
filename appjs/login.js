@@ -1,5 +1,5 @@
-var currentUser = "";
-var currentUserId;
+var currentUser = "Reaper";
+var currentUserId = 1;
 
 angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scope', '$routeParams', '$window',
     function($http, $log, $scope, $routeParams, $window) {
@@ -16,7 +16,7 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                 $http.post(reqURL, parameter).then( function(data){
                     // Get the user from the server through the rest api
     
-                    $log.log("Message Loaded: ", JSON.stringify(data["data"]["User"]));
+                    $log.log("User: ", JSON.stringify(data["data"]["User"]));
                     result = data["data"]["User"];
                     thisCtrl.user.push({
                         "id":result["userId"],
@@ -36,6 +36,9 @@ angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scop
                 // thisCtrl.password = "";
         };
 
+        this.register = function(){
+            $window.location.href = '/#!/register';
+        }
 
         // this.postMsg = function(){
         //     var msg = thisCtrl.newText;

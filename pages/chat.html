@@ -1,10 +1,13 @@
 <div ng-cloak style="align-content: center">
+    <button style="float:right" class="btn btn-big waves-effect waves-light teal darken-1" type="reset" name="action" ng-click="chatCtrl.refreshMessages()">
+        <i class="material-icons">refresh</i>
+    </button>
     <center><h2>Chat: {{chatCtrl.getChatName()}}</h2></center>
     <div class="row">
         <div class="col s12 m12">
             <div class="card teal darken-1">
                 <div class="card-content ">
-                    <i class="material-icons prefix" style="color: white">mode_edit</i> <span text-white style="font-size:larger; color:white">Message:</span>
+                    <i class="material-icons prefix" style="color: white">mode_edit</i> <span text-white style="font-size:larger; color:white">Message</span>
                      <textarea style="background: white" id="textarea1" class="materialize-textarea" ng-model="chatCtrl.newText"></textarea>
                 </div>
                 <div class="card-action white">
@@ -31,14 +34,17 @@
                                     {{chatCtrl.getRepliedMessage(m.repliesTo)}}
                                 </p> 
                                 <p>
-                                    {{m.text}}
+                                    {{m.text}}  
                                 </p>
+                                <p align=right style="color:grey"> {{m.postDate}} at {{m.postTime}} </p>
                         </div>
                         <div class="card-action">
                             <button class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.likeMsg(m)"><i class="material-icons">thumb_up
                             </i></button> <span ng-bind="m.like">  </span>
                             <button  class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.dislikeMsg(m)"><i class="material-icons">thumb_down
                             </i></button> <span ng-bind="m.nolike">  </span>
+                            <button style="float:right" class="btn-floating btn-small waves-effect waves-light teal darken-1" type="submit" name="action" ng-click="chatCtrl.replyToMsg(m)"><i class="material-icons">reply
+                            </i></button>
                         </div>
                     </div>
                 </div>

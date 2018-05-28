@@ -3,13 +3,7 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
         
         var thisCtrl = this;
         this.groupList = [];
-        // this.groupList1 = [];
-        // this.groupList2 = [];
         this.newGroup = "";
-
-        this.redirectToLogin = function(){
-            $window.location.href = '/#!/login';
-        }
 
         this.loadGroups = function(){
 
@@ -58,6 +52,12 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
 
         this.redirectToLogin = function(){
             $window.location.href = '/#!/login';
+            return
+        }
+
+        this.redirectToJoinGroups = function(){
+            $window.location.href = '/#!/joinGroups';
+            return
         }
 
         /*this.addGroup = function(){

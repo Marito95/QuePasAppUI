@@ -7,6 +7,10 @@
             templateUrl: 'pages/login.html',
             controller: 'LoginController',
             controllerAs : 'loginCtrl'
+        }).when('/register', {
+            templateUrl: 'pages/register.html',
+            controller: 'RegisterController',
+            controllerAs : 'registerCtrl'
         }).when('/chat/:cid/:cname', {
             templateUrl: 'pages/chat.html',
             controller: 'ChatController',
@@ -15,6 +19,10 @@
             templateUrl: 'pages/group.html',
             controller: 'GroupsController',
             controllerAs : 'groupsCtrl'
+        }).when('/joinGroups', {
+            templateUrl: 'pages/joinGroup.html',
+            controller: 'JoinGroupsController',
+            controllerAs : 'joinGroupsCtrl'
         }).otherwise({
             redirectTo: '/login'
         });
