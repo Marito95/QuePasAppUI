@@ -1,5 +1,8 @@
 var currentUser = "Reaper";
+<<<<<<< Updated upstream
 var currentUserId = 1;
+=======
+>>>>>>> Stashed changes
 
 angular.module('AppChat').controller('LoginController', ['$http', '$log', '$scope', '$routeParams', '$window',
     function($http, $log, $scope, $routeParams, $window) {

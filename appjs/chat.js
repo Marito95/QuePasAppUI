@@ -32,7 +32,7 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
                 }
                 $log.log("MessageList : ", thisCtrl.messageList);
             });   
-        };
+        };z
 
         this.reloadMessages = function(){
             return thisCtrl.messageList;
@@ -169,7 +169,11 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
         }
 
         this.loadMessages();
+<<<<<<< Updated upstream
         this.setChatName(thisCtrl.currentChat);
 }]);
+=======
+    }]);
+>>>>>>> Stashed changes
 
 
