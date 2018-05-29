@@ -14,7 +14,7 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
         this.loadMessages = function(){
 
             if(currentUser == "")
-                //thisCtrl.redirectToLogin()
+                thisCtrl.redirectToLogin();
 
             $log.log({
                         "User" : currentUser,

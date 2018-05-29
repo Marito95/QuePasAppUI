@@ -6,6 +6,10 @@ angular.module('AppChat').controller('JoinGroupsController', ['$http', '$log', '
         this.newGroup = "";
 
         this.loadAllGroups = function(){
+
+            if(currentUser == "")
+                thisCtrl.redirectToLogin();
+
             var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/";
             var index = 0;
                 $http.get(reqURL).then( function(data){
@@ -29,6 +33,11 @@ angular.module('AppChat').controller('JoinGroupsController', ['$http', '$log', '
 
         this.redirectToGroup = function(gId, gName){
             $window.location.href = "/#!/chat/" + gId + "/gName";
+            return
+        }
+
+        this.redirectToLogin = function(){
+            $window.location.href = '/#!/login';
             return
         }
 

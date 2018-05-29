@@ -8,7 +8,7 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
         this.loadGroups = function(){
 
             if(currentUser == "")
-                thisCtrl.redirectToLogin()
+                thisCtrl.redirectToLogin();
 
             var chatid = $routeParams.cid;
             var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/users/" + currentUserId + "/groups/";
@@ -25,25 +25,7 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
                                     "name":group["groupName"],
                                     "owner":group["ownerId"]
                         });
-                        // if(index%2 == 0){
-                        //     thisCtrl.groupList1.push({
-                        //         "id":group["groupId"],
-                        //         "name":group["groupName"],
-                        //         "owner":group["ownerId"]
-                        //     });
-                        // }
-                        // else{
-                        //     thisCtrl.groupList2.push({
-                        //         "id":group["groupId"],
-                        //         "name":group["groupName"],
-                        //         "owner":group["ownerId"]
-                        //     });
-                        // }
-                        // index++
                     }
-
-                    // $log.log("Group List1: ", JSON.stringify(thisCtrl.groupList1));
-                    // $log.log("Group List2: ", JSON.stringify(thisCtrl.groupList2));
                 });
 
            
@@ -59,15 +41,6 @@ angular.module('AppChat').controller('GroupsController', ['$http', '$log', '$sco
             $window.location.href = '/#!/joinGroups';
             return
         }
-
-        /*this.addGroup = function(){
-            var msg = thisCtrl.newText;
-            // Need to figure out who I am
-            var author = "Me";
-            var nextId = thisCtrl.counter++;
-            thisCtrl.messageList.unshift({"id": nextId, "text" : msg, "author" : author, "like" : 0, "nolike" : 0});
-            thisCtrl.newText = "";
-        };*/
        
         this.loadGroups();
 }]);

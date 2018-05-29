@@ -10,8 +10,9 @@ angular.module('AppChat').controller('MessageDetailsController', ['$http', '$log
 
         this.loadDetails = function(){
 
-            //if(currentUser == "")
-               // thisCtrl.redirectToLogin()
+            if(currentUser == "")
+               thisCtrl.redirectToLogin();
+               
             $log.log("MessageId : " + thisCtrl.currentMessageId.toString());
             var chatid = $routeParams.cid;
             var reqURL = "http://192.168.0.3:8000/QuePasApp/messages/" + thisCtrl.currentMessageId + "/likes";
