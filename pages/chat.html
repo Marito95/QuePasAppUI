@@ -1,4 +1,16 @@
 <div ng-cloak style="align-content: center">
+        <nav>
+                <div class="nav-wrapper teal darken-1">
+                  <form>
+                    <div class="input-field">
+                      <input id="search" type="search" required ng-keydown="$event.keyCode === 13 && chatCtrl.searchHastag()" ng-model="chatCtrl.hashtag">
+                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                      <i class="material-icons">close</i>
+                    </div>
+                  </form>
+                </div>
+              </nav>
+              <br>
     <button style="float:right" class="btn btn-big waves-effect waves-light teal darken-1" type="reset" name="action" ng-click="chatCtrl.refreshMessages()">
         <i class="material-icons">refresh</i>
     </button>

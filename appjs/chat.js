@@ -2,7 +2,7 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
     function($http, $log, $scope, $routeParams, $window) {
         
         var thisCtrl = this;
-
+        this.hashtag = "";
         this.currentChat = $routeParams.cname;
         this.currentChatId = $routeParams.cid;
         this.messageList = [];
@@ -57,12 +57,12 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
         
         this.getChatName = function(name){
             return thisCtrl.currentChatName;
-        }
+        };
 
         this.setChatName = function(name){
             thisCtrl.currentChatName = name;
             $log.log("Changed chat name to: " + name)
-        }
+        };
 
         /*this.postMsg = function(){
             var msg = thisCtrl.newText;
@@ -76,6 +76,40 @@ angular.module('AppChat').controller('ChatController', ['$http', '$log', '$scope
                 alert("Message is empty!");
             }
         };*/
+
+        this.searchHastag = function(hashtag){
+            $log.log("Searching...");
+            thisCtrl.messageList = [];
+            var chatid = $routeParams.cid;
+            var reqURL = "http://192.168.0.3:8000/QuePasApp/groups/" + chatid + "/messages/search?hashtag=" + thisCtrl.hashtag;
+            //var reqURL = "https://quepasapp.herokuapp.com/QuePasApp/groups/" + chatid + "/messages";
+            $http.get(reqURL).then( function(response){
+                // Get the messages from the server through the rest api
+                messages = response.data.Messages;
+                $log.log("Hashtag Messages : ", messages);
+                for(m in messages){
+                    message = messages[m];
+                    thisCtrl.messageList.push({
+                        "id":message["msgId"],
+                        "text":message["content"],
+                        "author":message["username"],
+                        "isReply":message['isReply'],
+                        "repliesTo":message['repliesTo'],
+                        "like":message['likes'],
+                        "nolike":message['dislikes'],
+                        "postDate":message['postDate'],
+                        "postTime":message['postTime'].substring(0, 5),
+                        "liked":false,
+                        "disliked":false
+
+                    });
+                }
+            }).catch(function(err){
+                alert("No messages found with " + thisCtrl.hashtag);
+                $log.error(err.message);
+            });   
+            
+        };
 
         this.postMsg = function(){
             var msg = thisCtrl.newText;
